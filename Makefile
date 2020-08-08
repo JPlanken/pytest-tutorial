@@ -1,11 +1,11 @@
 .PHONY: help venv test lint reformat
 
-PROJECT_NAME=pytest_tutorial
+PROJECT_NAME=project_folder
 
 .DEFAULT: help
 help:
 	@echo "make venv"
-	@echo "       install virtual environment using pipenv"
+	@echo "       install a virtual environment using pipenv"
 	@echo "make test"
 	@echo "       run tests"
 	@echo "make lint"
