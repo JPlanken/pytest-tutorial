@@ -10,3 +10,9 @@ python_version = "3.6"
 pytest = "*"
 pytest-cov = "*"
 
+[dev-packages]
+black = "==19.3b0"
+flake8 = "*"
+isort = "*"
+mypy = "*"
+pylint = "*"

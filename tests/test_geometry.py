@@ -1,31 +1,33 @@
 # pytest-tutorial/tests/test_geometry.py
-
 import pytest
 from pytest import mark
+
 from project_folder.geometry import Rectangle
 
-@pytest.fixture()
-def length() -> int:
-    return 22
-
-@pytest.fixture()
-def width() -> int:
-    return 8
 
 @mark.geometry
-class geometryTests():
-    @mark.init
-    def test_geometry_rectangle_init(self,length,width):
-        rec = Rectangle(length,width)
-        assert rec.length == length, "length is initialized"
-        assert rec.width == width, "width is initialized"
+class geometryTests:
+    def test_geometry_perimeter(self, f_length, f_width):
+        rec = Rectangle(f_length, f_width)
+        assert rec.area() == f_length * f_width, "area is calculated"
 
-    @mark.area
-    def test_geometry_rectangle_area(self,length,width):
-        rec = Rectangle(length,width)
-        assert rec.area() == length*width, "area is calculated"
+    @pytest.mark.parametrize(
+        "length,width,expected",
+        [
+            (1, 2, 2),
+            (4, 100, 400),
+            (3, 0, 0),
+            (1, 999999999999999, 999999999999999),
+            pytest.param(1, -1, 1, marks=pytest.mark.xfail),
+        ],
+    )
+    def test_geometry_area_parametrized(self, length, width, expected):
+        rec = Rectangle(length, width)
+        assert rec.area() == expected, "area is calculated"
+        assert rec.area() >= 0, "area is bigger than zero"
 
-    @mark.perimeter
-    def test_geometry_rectangle_perimeter(self,length,width):
-        rec = Rectangle(length,width)
-        assert rec.perimeter() == 2*length+2*width, "perimeter is calculated"
+    def test_geometry_area_error(self):
+        with pytest.raises(ValueError):
+            Rectangle(-1, 3).area()
+        with pytest.raises(TypeError):
+            Rectangle(-1, "String").area()
