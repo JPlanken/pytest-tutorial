@@ -6,7 +6,7 @@ from project_folder.geometry import Rectangle
 
 
 @mark.geometry
-class geometryTests:
+class GeometryTests:
     def test_geometry_perimeter(self, f_length, f_width):
         rec = Rectangle(f_length, f_width)
         assert rec.area() == f_length * f_width, "area is calculated"
