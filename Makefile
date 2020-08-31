@@ -1,6 +1,6 @@
 .PHONY: help venv test lint reformat
 
-PROJECT_NAME=project_folder
+PROJECT_NAME=geometry
 
 .DEFAULT: help
 help:
@@ -19,7 +19,7 @@ endif
 	pipenv install --dev
 	
 test:
-	pipenv run pytest --cov
+	pipenv run pytest
 
 rl:
 	pipenv run isort -v $(PROJECT_NAME) tests

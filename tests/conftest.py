@@ -1,15 +1,13 @@
+# pytest-tutorial/tests/conftest.py
+
 import pytest
 
 
-def hello_world():
-    print("hi")
-
-
 @pytest.fixture()
-def f_length() -> int:
+def length() -> int:
     return 22
 
 
 @pytest.fixture()
-def f_width() -> int:
+def width() -> int:
     return 8
